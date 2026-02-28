@@ -24,4 +24,5 @@ This project is a web application that predicts house prices using machine learn
 ## Installation & Setup
 1. Clone the repository
 2. Create a virtual environment and activate it.
-3. Write Command : python manage.py runserver 
+3. Make sure you have to use your own django key in Settings.py.
+4. Write Command : python manage.py runserver 
