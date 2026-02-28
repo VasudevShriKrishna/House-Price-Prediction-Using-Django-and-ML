@@ -17,7 +17,7 @@ from . import  views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home),
-    path('predict/', views.predict),
+    path('predict/', views.predict), # prediction route
     path('result/', views.result),
-    path('history/', views.prediction_history),  # new route
+    path('history/', views.prediction_history), # must needed this route to ccheck history
 ]
