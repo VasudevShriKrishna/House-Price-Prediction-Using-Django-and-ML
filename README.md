@@ -26,3 +26,13 @@ This project is a web application that predicts house prices using machine learn
 2. Create a virtual environment and activate it.
 3. Make sure you have to use your own django key in Settings.py.
 4. Write Command : python manage.py runserver 
+
+## Very Important For YOU :
+Ideas make projects better.
+
+⚡ This project is only version **today**.  
+Your idea could define version **tomorrow**.
+
+Feel free to open an issue, suggest improvements, or submit a pull request. 
+
+Contact through Email ID: umaashankara75189@gmail.com
