@@ -1,66 +1,179 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Property Valuation | Home</title>
     <style>
-        h2 {
-            margin-top: 45px;
-            font-size: 47px;
-            color: black;
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;800&display=swap');
+
+        body, html {
+            margin: 0; padding: 0; height: 100%;
+            font-family: 'Outfit', sans-serif;
+            background-color: #0b0f19;
+            overflow: hidden;
         }
 
-        h1 {
-            font-size: 59px;
-            color: blue;
-        }
-
-        input[type=submit] {
-            background-color: navy;
-            color: goldenrod;
-            font-size: x-large;
-            margin-top: 10%;
-            align-items: center;
-            cursor: pointer;
-            padding: 23px 32px;
-        }
-
-        body {
-            background-image: url("{% static '6_3.jpg' %}");
-            background-repeat: no-repeat;
-            background-attachment: fixed;
+        /* Slow Zooming Background */
+        .bg-container {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: url("{% static '6_3.jpg' %}") no-repeat center center;
             background-size: cover;
-            min-height: 100vh;
+            animation: slowZoom 20s infinite alternate linear;
+            z-index: -2;
+            filter: brightness(0.6) contrast(1.1);
         }
 
-        footer,
-        a {
-            text-align: center;
-            color: navy;
-            position: fixed;
-            left: 0;
-            bottom: 0;
-            font-size: 29px;
-            width: 100%;
+        .overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(11,15,25,0.9) 0%, rgba(15,23,42,0.6) 100%);
+            z-index: -1;
         }
+
+        @keyframes slowZoom {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+
+        .container {
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            height: 100vh; text-align: center; color: white;
+        }
+
+        /* Glassmorphism Card */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 60px 80px;
+            border-radius: 30px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            animation: slideUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            transform: translateY(100px); opacity: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Animated House SVG */
+        .house-animation {
+            width: 120px; height: 120px; margin-bottom: 20px;
+            filter: drop-shadow(0 0 15px rgba(56, 189, 248, 0.6));
+        }
+
+        .house-path {
+            fill: none;
+            stroke: #38bdf8;
+            stroke-width: 3;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-dasharray: 400;
+            stroke-dashoffset: 400;
+            animation: drawHouse 3s ease infinite 0.5s;
+        }
+
+        /* Trigger animation ONLY on hover */
+        .house-animation:hover .house-path {
+            animation: drawHouse 2s ease forwards,
+                    rainbowStroke 10s linear infinite;
+        }
+
+        /* House drawing animation */
+        @keyframes drawHouse {
+            to { stroke-dashoffset: 0; }
+        }
+
+        /* Rainbow color sequence */
+        @keyframes rainbowStroke {
+            0%   { stroke: red; }
+            16%  { stroke: orange; }
+            33%  { stroke: yellow; }
+            50%  { stroke: green; }
+            66%  { stroke: blue; }
+            83%  { stroke: indigo; }
+            100% { stroke: violet; }
+        }
+
+        @keyframes slideUp {
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        h2 { font-size: 24px; font-weight: 300; color: #94a3b8; letter-spacing: 4px; margin-bottom: 5px; text-transform: uppercase;}
+        h1 { font-size: 56px; font-weight: 800; margin: 0 0 40px 0; color: #ffffff; letter-spacing: 1px; }
+        
+        h1 span {
+            background: linear-gradient(to right, #38bdf8, #818cf8);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+
+        /* Animated Button #d1a000*/
+        .start-btn {
+            position: relative; display: inline-block;
+            padding: 20px 60px; font-size: 20px; font-weight: 800; letter-spacing: 2px;
+            color: #fff; background: transparent; border: 2px solid #38bdf8;
+            border-radius: 50px; cursor: pointer; overflow: hidden; transition: 0.4s;
+            text-decoration: none; text-transform: uppercase;
+        }
+
+        .start-btn:hover {
+            background: linear-gradient(270deg, red, orange, yellow, green, blue, indigo, violet);
+            background-size: 1400% 1400%;
+            animation: rainbow 7s ease infinite;
+            box-shadow: 0 0 30px rgba(56, 189, 248, 0.6); transform: scale(1.05);
+            color: #f08000; border-color: transparent;
+        }
+        @keyframes rainbow {
+                0% { background-position: 0% 50%; }
+                50% { background-position: 100% 50%; }
+                100% { background-position: 0% 50%; }
+        }; 
+        
+
+        /* Button Sweep Effect */
+        .start-btn::before {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 115, 0, 0.99), transparent);
+            transition: 1.5s;
+        }
+
+        .start-btn:hover::before { left: 100%; }
+
+        footer {
+            position: absolute; bottom: 30px; width: 100%; text-align: center;
+            color: rgb(255, 255, 255); font-size: 16px; letter-spacing: 1px;, width: 100%;
+        }
+        footer { position: fixed; bottom: 20px; color: rgb(255, 255, 255); font-size: 21px; width: 100%; font-family: 'Arial', sans-serif; }
+        footer a { color: #fa8500f8; text-decoration: none; font-weight: bold; transition: 0.3s; }
+        footer a:hover { color: #ffee02f8; text-shadow: 0 0 10px #a30000; }
     </style>
 </head>
+<body>
+{% comment %}  {% endcomment %}
+    <div class="bg-container"></div>
+    <div class="overlay"></div>
 
-<body style="text-align: center">
-    <h2>Welcome to </h2>
-    <h1>&nbsp;&nbsp;&nbsp;&nbsp; Housing Price Predicton System</h1>
-    <form action="predict">
-        <input type="submit" value="START">
-    </form>
+    <div class="container">
+        <div class="glass-panel">
+            
+            <!-- Animated SVG Real Estate Icon -->
+            <svg class="house-animation" viewBox="0 0 100 100">
+                <path class="house-path" d="M10,50 L50,15 L90,50 M20,40 V90 H80 V40 M40,90 V60 H60 V90 M70,30 V15 H80 V40" />
+            </svg>
 
+            <h2>Next-Generation</h2>
+            <h1>Property <span>Valuation AI</span></h1>
+            
+            <form action="predict">
+                <button type="submit" class="start-btn">INITIALIZE AI PREDICTION</button>
+            </form>
+
+        </div>
+    </div>
 
     <footer>
-        <b>
-            <p> Creator : JNKP_Krish <br><a href="mailto:umaashankara75189@gmail.com">umaashankara75189@gmail.com</a></p>
-        </b>
+        Created by JNKP_Krish | <a href="mailto:umaashankara75189@gmail.com">umaashankara75189@gmail.com</a>
     </footer>
-</body>
 
+</body>
 </html>
