@@ -23,7 +23,6 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 model = RandomForestRegressor(n_estimators=200, max_depth=15, random_state=42)
 model.fit(X_train, y_train)
 
-# 6. Check Accuracy
 predictions = model.predict(X_test)
 accuracy = r2_score(y_test, predictions)
 print(f"Model trained with R-squared Accuracy: {accuracy * 100:.2f}%")
