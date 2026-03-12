@@ -50,7 +50,7 @@ def result(request):
             error_message = f"Error: Enter valid amount in Purchase Budget. Minimum ₹{min_required_budget} required for {var3} BHK."
             return render(request, "predict.html", {"result2": error_message})
         
-        # Condition 2: Validate House Age
+        # Validate House Age
         if var2 < 0 or var2 > 15:
             error_message = "Error: House Age must be between 0 and 15 years."
             return render(request, "predict.html", {"result2": error_message})
