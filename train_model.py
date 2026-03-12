@@ -27,7 +27,6 @@ predictions = model.predict(X_test)
 accuracy = r2_score(y_test, predictions)
 print(f"Model trained with R-squared Accuracy: {accuracy * 100:.2f}%")
 
-# 7. Save the model and mappings
 joblib.dump(model, "house_model.pkl")
 joblib.dump(city_mapping, "city_mapping.pkl")
 print("Model and mappings saved successfully!")
