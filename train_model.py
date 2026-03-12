@@ -11,14 +11,13 @@ target = 'Price_in_Lakhs'
 
 df = data[features + [target]].dropna()
 
-# 3. Encode Categorical Variables
+#Encode Categorical Variables
 city_mapping = {city: idx for idx, city in enumerate(df['City'].unique())}
 furnishing_mapping = {"Unfurnished": 0, "Semi-furnished": 1, "Furnished": 2, "Fully furnished": 2} # Added mapping variations
 
 df['City'] = df['City'].map(city_mapping)
 df['Furnished_Status'] = df['Furnished_Status'].map(furnishing_mapping)
 
-# 4. Split Data
 X = df.drop(target, axis=1)
 y = df[target]
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
