@@ -62,7 +62,7 @@ def result(request):
         if city_encoded == -1 or furnishing_encoded == -1:
             return render(request, "predict.html", {"result2": "Invalid city or furnishing status selected."})
 
-        # 3. Predict Price
+        # Predict Price
         features = np.array([var1, var2, var3, var4, city_encoded, 0]).reshape(1, -1)
         base_pred = model.predict(features)[0]
 
