@@ -26,7 +26,8 @@ This project is a web application that predicts house prices using machine learn
 2. Create a virtual environment and activate it.
 3. Make sure you have to use your own django key in Settings.py.
 4. First run python file : train_model.py
-5. Write Command : python manage.py runserver 
+5. Check that 2 files which have .pkl file type generated. IF Yes then use instructions 6 / IF no then check all imports perfectly installed & after that re-run the python file.
+6. Write Command : python manage.py runserver 
 
 ## Very Important For YOU :
 Ideas make projects better.
