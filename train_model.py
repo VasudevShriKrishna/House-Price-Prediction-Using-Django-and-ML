@@ -5,7 +5,6 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score
 import joblib
 
-# 1. Load Data
 data = pd.read_csv("./india_housing_prices.csv")
 
 # 2. Select matching features based on your CSV image
