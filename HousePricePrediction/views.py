@@ -15,7 +15,6 @@ def predict(request):
 
 def result(request):
     try:
-        # 1. Load Data and Train Live (Your original approach)
         data = pd.read_csv("./108.csv")
 
         # Encode categorical variables
