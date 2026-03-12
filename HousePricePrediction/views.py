@@ -66,7 +66,7 @@ def result(request):
         features = np.array([var1, var2, var3, var4, city_encoded, 0]).reshape(1, -1)
         base_pred = model.predict(features)[0]
 
-        # Condition 3: Adjust based on furnishing manually
+        # Adjust based on furnishing manually
         if furnishing == "Fully furnished":
             final_pred = base_pred + 300000
         elif furnishing == "Semi-furnished":
