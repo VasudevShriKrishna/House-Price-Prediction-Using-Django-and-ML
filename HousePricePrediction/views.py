@@ -31,15 +31,13 @@ def result(request):
         model = LinearRegression()
         model.fit(X_train, Y_train)
 
-        # 2. Get Input Variables (J1 to J6)
+        # Get Input Variables (J1 to J6)
         var1 = float(request.GET['J1'])  # Purchase Budget
         var2 = float(request.GET['J2'])  # House Age
         var3 = float(request.GET['J3'])  # BHK
         var4 = float(request.GET['J4'])  # Population
         city = request.GET['J5']         # City (string)
         furnishing = request.GET['J6']   # Furnishing Status (string)
-
-        # --- RESTORED CONDITIONS & VALIDATIONS ---
 
         # Condition 1: Validate Purchase Budget based on BHK
         bhk_min_budget = {
