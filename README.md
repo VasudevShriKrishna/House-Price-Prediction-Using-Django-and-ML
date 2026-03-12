@@ -25,7 +25,8 @@ This project is a web application that predicts house prices using machine learn
 1. Clone the repository
 2. Create a virtual environment and activate it.
 3. Make sure you have to use your own django key in Settings.py.
-4. Write Command : python manage.py runserver 
+4. First run python file : train_model.py
+5. Write Command : python manage.py runserver 
 
 ## Very Important For YOU :
 Ideas make projects better.
