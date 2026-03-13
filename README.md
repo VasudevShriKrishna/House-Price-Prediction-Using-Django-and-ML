@@ -141,18 +141,21 @@ http://127.0.0.1:8000/
 # 📂 Project Structure (Example)
 
 ```
-house-price-predictor/
-│
-├── predictor/
-│   ├── templates/
-│   ├── static/
-│   ├── views.py
-│   ├── models.py
-│
-├── train_model.py
-├── requirements.txt
+HousePricePrediction/
+├── __init__.py
+├── asgi.py
+├── settings.py
+├── urls.py
+├── views.py
+├── wsgi.py
+├── static/
+├── templates/
+│   └── index.html
+├── 108.csv
+├── LICENSE
+├── README.md
+├── db.sqlite3
 ├── manage.py
-└── README.md
 ```
 
 ---
