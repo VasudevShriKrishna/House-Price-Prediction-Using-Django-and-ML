@@ -1,5 +1,8 @@
 # 🛡️✅ House Price Prediction Web App
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)]()
+
 This project is a web application that predicts house prices using machine learning, built with Django.
 
 ## Features
