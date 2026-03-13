@@ -1,4 +1,4 @@
-# House Price Prediction Web App
+# 🛡️✅ House Price Prediction Web App
 
 This project is a web application that predicts house prices using machine learning, built with Django.
 
