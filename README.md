@@ -11,7 +11,7 @@ A sleek, intelligent web application built with **Django** that leverages **mach
 
 - 🤖 **Real-Time ML Predictions:** Instantly calculates estimated house prices using a pre-trained machine learning model.  
 - 🖥 **Intuitive UI:** A clean, responsive, and user-friendly interface designed for seamless data input.  
-- 🧾 **Prediction History:** Automatically stores previous predictions in the database for easy tracking and review.  
+- 🧾 **Prediction History:** Automatically stors previous predictions in the database for easy tracking and review.  
 - 📊 **Review Dashboard:** Displays a comprehensive log of past predictions directly on the frontend.
 
 ---
