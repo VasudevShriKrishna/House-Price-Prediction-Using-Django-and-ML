@@ -43,7 +43,7 @@ def result(request):
         # Validate Purchase Budget based on BHK
         bhk_min_budget = {
             1: 1500000, 1.5: 2200000, 2: 2800000, 2.5: 3400000,
-            3: 4000000, 3.5: 4600000, 4: 5200000, 4.5: 5800000, 5: 69000,,,00
+            3: 4000000, 3.5: 4600000, 4: 5200000, 4.5: 5800000, 5: 6900000
         }
 
         min_required_budget = bhk_min_budget.get(var3, None)
