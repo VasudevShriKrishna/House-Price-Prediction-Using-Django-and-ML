@@ -1,68 +1,86 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Prediction History</title>
     <style>
         body {
-            font-family: 'Segoe UI', sans-serif; background-color: #0f172a; color: white;
-            padding: 40px; display: flex; flex-direction: column; align-items: center;
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            background-color: #f9f9f9;
         }
 
-        h2 { color: #38bdf8; font-size: 40px; text-shadow: 0 0 10px rgba(56, 189, 248, 0.5); }
-
-        .table-container {
-            width: 90%; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px);
-            border-radius: 15px; padding: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-            animation: slideUp 0.8s ease;
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 40px;
+            font-size: 15px;
         }
 
-        @keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-
-        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
-        
-        th, td { padding: 15px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        th { background-color: rgba(56, 189, 248, 0.1); color: #38bdf8; text-transform: uppercase; letter-spacing: 1px; }
-        
-        tr:hover { background-color: rgba(255, 255, 255, 0.1); transition: 0.3s; }
-
-        .back-btn {
-            background: #38bdf8; color: #0f172a; font-weight: bold; padding: 12px 30px;
-            border-radius: 30px; text-decoration: none; display: inline-block; margin-top: 20px;
-            transition: 0.3s;
+        th,
+        td {
+            border: 1px solid #aaa;
+            padding: 8px;
+            text-align: center;
         }
-        .back-btn:hover { background: #fff; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(255,255,255,0.3); }
+
+        th {
+            background-color: #444;
+            color: white;
+        }
+
+        h2 {
+            text-align: center;
+            color: blue;
+            font-size: 35px;
+        }
+
+        a button {
+            padding: 10px 20px;
+            background-color: black;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 27px;
+        }
+
+        a button:hover {
+            background-color: orangered;
+        }
     </style>
 </head>
+
 <body>
-    <h2>Recent Valuations Matrix</h2>
-    <div class="table-container">
-        <table>
-            <tr>
-                <th>City</th>
-                <th>BHK</th>
-                <th>Budget (₹)</th> 
-                {% comment %} <th>Size</th> {% endcomment %}
-                <th>Age</th>
-                <th>Furnishing</th>
-                <th>Predicted Price</th>
-                <th>Date</th>
-            </tr>
-            {% for entry in history %}
-            <tr>
-                <td>{{ entry.city }}</td>
-                <td>{{ entry.bedrooms }}</td> 
-                <td>{{ entry.budget }}</td>  
-                {% comment %} <td>{{ entry.bhk }}</td>
-                <td>{{ entry.size }}</td> {% endcomment %}
-                <td>{{ entry.age }}</td>
-                <td>{{ entry.furnishing_status }}</td>
-                {% comment %} <td>{{ entry.furnishing }}</td> {% endcomment %}
-                <td style="color: #4ade80; font-weight: bold;">{{ entry.prediction }}</td>
-                <td style="color: #94a3b8; font-size: 0.9em;">{{ entry.date }}</td>
-            </tr>
-            {% endfor %}
-        </table>
-    </div>
-    <a href="/predict/" class="back-btn">← Back to Predictor</a>
+
+    <h2>Last Recent Predictions</h2>
+
+    <table>
+        <tr>
+            <th>Purchase Budget</th>
+            <th>House Age</th>
+            <th>Number of Bedrooms(BHK)</th>
+            <th>Area's Resident Population</th>
+            <th>City</th>
+            <th>Furnishing Status</th>
+            <th>Predicted Price (₹)</th>
+            <th>Prediction Date</th>
+        </tr>
+        {% for entry in history %}
+        <tr>
+            <td>{{ entry.budget }}</td>
+            <td>{{ entry.age }}</td>
+            <td>{{ entry.bedrooms }}</td>
+            <td>{{ entry.population }}</td>
+            <td>{{ entry.city }}</td>
+            <td>{{ entry.furnishing_status }}</td>
+            <td>{{ entry.prediction }}</td>
+            <td>{{ entry.date }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <a href="/predict/"><button>Back to Prediction</button></a>
+
 </body>
+
 </html>
