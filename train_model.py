@@ -8,7 +8,6 @@ import joblib
 data = pd.read_csv("./india_housing_prices.csv")
 features = ['City', 'BHK', 'Size_in_SqFt', 'Age_of_Property', 'Furnished_Status']
 target = 'Price_in_Lakhs'
-
 df = data[features + [target]].dropna()
 city_mapping = {city: idx for idx, city in enumerate(df['City'].unique())}
 furnishing_mapping = {"Unfurnished": 0, "Semi-furnished": 1, "Furnished": 2, "Fully furnished": 2} # Added mapping variations
