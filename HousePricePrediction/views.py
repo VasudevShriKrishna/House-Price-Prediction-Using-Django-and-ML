@@ -115,7 +115,7 @@ def prediction_history(request):
                         "budget": f"₹{var1}",
                         "age": f"{var2} years",
                         "bedrooms": var3,
-                        "population": var4,
+                        "population": var4, # it is important because density is important factor
                         "city": city,
                         "furnishing_status": furnishing,
                         "prediction": f"₹{pred}",
