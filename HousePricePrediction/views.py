@@ -112,7 +112,7 @@ def prediction_history(request):
                     except ValueError:
                         date_1 = date
                     history.append({
-                        "budget": f"₹{var1}",
+                        "budget": f"₹{var1}", # budget is important for resell checks and buyers prediction perspective
                         "age": f"{var2} years",
                         "bedrooms": var3,
                         "population": var4, # it is important because density is important factor
