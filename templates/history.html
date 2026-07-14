@@ -85,19 +85,9 @@
                             {{ entry.date }}
                         </td>
                     </tr>
-
                 {% empty %}
                     <tr>
-                        <td
-                            colspan="8"
-                            style="
-                                text-align: center;
-                                color: #94a3b8;
-                                padding: 30px;
-                            "
-                        >
-                            No prediction history is available.
-                        </td>
+                        <td colspan="8" style="text-align: center; color: #94a3b8; padding: 30px;">No prediction history is available. </td>
                     </tr>
                 {% endfor %}
             </tbody>
