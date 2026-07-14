@@ -40,8 +40,7 @@
             <tr>
                 <th>City</th>
                 <th>BHK</th>
-                <th>Budget (₹)</th> <!-- Changed Size to Budget -->
-                {% comment %} <th>Size</th> {% endcomment %}
+                <th>Budget (₹)</th>
                 <th>Age</th>
                 <th>Furnishing</th>
                 <th>Predicted Price</th>
@@ -50,13 +49,10 @@
             {% for entry in history %}
             <tr>
                 <td>{{ entry.city }}</td>
-                <td>{{ entry.bedrooms }}</td> <!-- Changed from entry.bhk -->
-                <td>{{ entry.budget }}</td>   <!-- Changed from entry.size -->
-                {% comment %} <td>{{ entry.bhk }}</td>
-                <td>{{ entry.size }}</td> {% endcomment %}
+                <td>{{ entry.bedrooms }}</td> 
+                <td>{{ entry.budget }}</td>  
                 <td>{{ entry.age }}</td>
-                <td>{{ entry.furnishing_status }}</td><!-- Changed from entry.furnishing -->
-                {% comment %} <td>{{ entry.furnishing }}</td> {% endcomment %}
+                <td>{{ entry.furnishing_status }}</td>
                 <td style="color: #4ade80; font-weight: bold;">{{ entry.prediction }}</td>
                 <td style="color: #94a3b8; font-size: 0.9em;">{{ entry.date }}</td>
             </tr>
