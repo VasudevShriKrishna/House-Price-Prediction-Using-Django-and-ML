@@ -62,18 +62,17 @@
                         <td>
                             {{ entry.bedrooms }}
                         </td>
-                        <td>
-                            {{ entry.budget }}
+                        
+                        <td>{{ entry.budget }}
                         </td>
-                        <td>
-                            {{ entry.age }}
+                        
+                        <td>{{ entry.age }}
                         </td>
                         <td>
                             {{ entry.population }}
                         </td>
-                        <td>
-                            {{ entry.furnishing_status }}
-                        </td>
+                        
+                        <td>{{ entry.furnishing_status }}</td>
                         <td style="color: #4ade80;font-weight: bold;">
                             {{ entry.prediction }}
                         </td>
@@ -88,11 +87,6 @@
         </table>
     </div>
 
-    <a
-        href="{% url 'predict' %}"
-        class="back-btn"
-    >
-        ← Back to Predictor
-    </a>
+    <a href="{% url 'predict' %}" class="back-btn"> ← Back to Predictor </a>
 </body>
 </html>
