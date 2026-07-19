@@ -1,324 +1,517 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Prediction Form</title>
+    <title>Predict Price | Property Valuation AI</title>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-
-    <!-- Font Awesome for toggle icon -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    
     <style>
-        /*CSS Variables for Theming*/
-        :root {
-            --bg-start: #dbeafe;
-            --bg-end: #93c5fd;
-            --text-color: #1f2937;
-            --form-bg: rgba(255, 255, 255, 0.15);
-            --input-bg: rgba(255, 255, 255, 0.5);
-            --button-gradient: linear-gradient(135deg, #06b6d4, #3b82f6);
-            --hover-shadow: 0 8px 16px rgba(59, 130, 246, 0.4);
-        }
-
-        [data-theme="dark"] {
-            --bg-start: #1e1e2f;
-            --bg-end: #2d2d44;
-            --text-color: #f3f4f6;
-            --form-bg: rgba(255, 255, 255, 0.08);
-            --input-bg: rgba(255, 255, 255, 0.1);
-            --button-gradient: linear-gradient(135deg, #8b5cf6, #6366f1);
-            --hover-shadow: 0 8px 16px rgba(139, 92, 246, 0.4);
+        * {
+            box-sizing: border-box;
         }
 
         body {
             margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
-            background-attachment: fixed;
-            color: var(--text-color);
-            transition: all 0.4s ease;
+            min-height: 100vh;
+            padding: 40px 20px;
+            font-family: "Segoe UI", sans-serif;
+            background:
+                linear-gradient(
+                    rgba(15, 23, 42, 0.76),
+                    rgba(15, 23, 42, 0.76)
+                ),
+                url("{% static '6_3.jpg' %}") no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
         }
 
         .main {
-            max-width: 950px;
-            margin: 100px auto;
-            padding: 50px;
-            background: var(--form-bg);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border-radius: 18px;
-            box-shadow: 0 22px 32px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            transition: background 0.3s ease;
+            width: min(100%, 920px);
+            margin: 0 auto;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 20px;
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            animation: fade-in 0.6s ease-in-out;
+        }
+
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+                transform: scale(0.98);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
 
         h1 {
-            font-size: 38px;
-            font-weight: 700;
-            margin-bottom: 40px;
-        }
-
-        h2 {
-            font-size: 50px;
-            margin-top: 35px;
-            color: blue;
-        }
-
-        label {
-            font-weight: 950;
-            font-size: x-large;
-            margin-bottom: 8px;
-            display: block;
-            text-align: left;
-        }
-
-        input[type="number"] {
-            width: 100%;
-            padding: 12px;
-            background-color: var(--input-bg);
-            border: none;
-            border-radius: 12px;
-            color: var(--text-color);
-            margin-bottom: 20px;
-            transition: box-shadow 0.3s ease;
-        }
-
-        input[type="number"]:focus {
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.4);
+            margin: 0 0 34px;
+            color: #38bdf8;
+            text-align: center;
+            font-size: clamp(30px, 5vw, 42px);
+            letter-spacing: 1px;
         }
 
         .form-row {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 22px 36px;
         }
 
         .form-group {
-            flex: 0 0 48%;
-            margin-bottom: 20px;
+            min-width: 0;
         }
 
         .form-group.full-width {
-            flex: 0 0 100%;
+            grid-column: 1 / -1;
         }
 
-        input[type="submit"],
-        .history-button {
-            background: var(--button-gradient);
-            color: white;
-            padding: 14px 30px;
-            border: none;
-            border-radius: 30px;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            transition: all 0.3s ease;
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #cbd5e1;
+            font-weight: 600;
+            letter-spacing: 1px;
         }
 
-        input[type="submit"]:hover,
-        .history-button:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--hover-shadow);
-        }
-
-        footer {
-            text-align: center;
-            color: navy;
-            position: fixed;
-            left: 0;
-            bottom: 0;
-            font-size: 21px;
+        input,
+        select {
             width: 100%;
+            min-height: 55px;
+            padding: 14px 18px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.12);
+            color: #fff;
+            font: inherit;
+            transition: 0.25s ease;
         }
 
-        footer a {
-            color: inherit;
-            text-decoration: underline;
+        input::placeholder {
+            color: #9ca3af;
         }
 
-        @media (max-width: 768px) {
-            .form-group {
-                flex: 0 0 100%;
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: #38bdf8;
+            background: rgba(255, 255, 255, 0.18);
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.35);
+        }
+
+        select option {
+            background: #1e293b;
+            color: #fff;
+        }
+
+        .btn-predict {
+            width: 100%;
+            margin-top: 34px;
+            padding: 18px;
+            border: 0;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #38bdf8, #3b82f6);
+            color: #fff;
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.35);
+            transition: 0.25s ease;
+        }
+
+        .btn-predict:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 25px rgba(59, 130, 246, 0.5);
+        }
+
+        .btn-predict:disabled {
+            cursor: wait;
+            opacity: 0.75;
+            transform: none;
+        }
+
+        .btn-history {
+            display: block;
+            width: 100%;
+            margin-top: 20px;
+            padding: 14px;
+            border: 1px solid #94a3b8;
+            border-radius: 12px;
+            color: #94a3b8;
+            text-align: center;
+            text-decoration: none;
+            transition: 0.25s ease;
+        }
+
+        .btn-history:hover {
+            background: #94a3b8;
+            color: #0f172a;
+            font-weight: 700;
+        }
+
+        .result-box {
+            margin-top: 30px;
+            padding: 20px;
+            border-left: 5px solid #38bdf8;
+            border-radius: 8px;
+            background: rgba(56, 189, 248, 0.2);
+            color: #fff;
+            text-align: center;
+            font-size: 22px;
+            font-weight: 700;
+            overflow-wrap: anywhere;
+            animation: pop-in 0.35s ease;
+        }
+
+        @keyframes pop-in {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        #loader-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: rgba(15, 23, 42, 0.88);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            color: #38bdf8;
+        }
+
+        .scanner {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            overflow: hidden;
+            border: 2px solid rgba(56, 189, 248, 0.25);
+            border-radius: 50%;
+            box-shadow: 0 0 40px rgba(56, 189, 248, 0.3);
+        }
+
+        .scanner::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, transparent, #38bdf8);
+            transform-origin: left center;
+            animation: radar 1.5s linear infinite;
+        }
+
+        .scanner::after {
+            content: "";
+            position: absolute;
+            inset: 2px;
+            border-radius: 50%;
+            background: #0f172a;
+        }
+
+        .scanner-dot {
+            position: absolute;
+            z-index: 10;
+            top: 50%;
+            left: 50%;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #38bdf8;
+            box-shadow: 0 0 15px #38bdf8;
+            transform: translate(-50%, -50%);
+        }
+
+        @keyframes radar {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .loader-text {
+            margin-top: 35px;
+            text-align: center;
+            font-size: 21px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .loader-subtext {
+            margin-top: 10px;
+            color: #94a3b8;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        @media (max-width: 700px) {
+            body {
+                padding: 20px 12px;
             }
 
             .main {
-                margin: 40px 20px;
-                padding: 30px;
+                padding: 28px 20px;
             }
-        }
 
-        .custom-select-wrapper {
-            position: relative;
-        }
+            .form-row {
+                grid-template-columns: 1fr;
+            }
 
-        .custom-select-wrapper select {
-            width: 100%;
-            padding: 12px;
-            padding-right: 40px;
-            background-color: var(--input-bg);
-            border: none;
-            border-radius: 12px;
-            color: var(--text-color);
-            appearance: none;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            margin-bottom: 20px;
-            transition: box-shadow 0.3s ease;
-            font-size: 16px;
-            font-family: inherit;
-        }
-
-        .custom-select-wrapper::after {
-            content: '\f078';
-            /* FontAwesome down arrow */
-            font-family: "Font Awesome 6 Free";
-            font-weight: 900;
-            position: absolute;
-            right: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            pointer-events: none;
-            color: var(--text-color);
-            font-size: 15px;
+            .form-group.full-width {
+                grid-column: auto;
+            }
         }
     </style>
 </head>
 
 <body>
-    <div class="container main">
-        <h1 style="color:rgb(255, 0, 0);">Enter Real Estate Values</h1>
-        <form action="/result/">
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Purchase Budget</label>
-                    <input type="number" name="J1" required>
-                </div>
-                <div class="form-group">
-                    <label>House Age</label>
-                    <input type="number" name="J2" max="15" min="0" required>
-                </div>
+    <div id="loader-overlay" aria-hidden="true">
+        <div class="scanner">
+            <div class="scanner-dot"></div>
+        </div>
 
-                <div class="form-group">
-                    <label for="bhk">Number of Bedrooms (BHK)</label>
-                    <div class="custom-select-wrapper">
-                        <select id="bhk" name="J3" required>
-                            <option value="" disabled selected>Select BHK</option>
-                            <option value="1">1 BHK</option>
-                            <option value="1.5">1.5 BHK</option>
-                            <option value="2">2 BHK</option>
-                            <option value="2.5">2.5 BHK</option>
-                            <option value="3">3 BHK</option>
-                            <option value="3.5">3.5 BHK</option>
-                            <option value="4">4 BHK</option>
-                            <option value="4.5">4.5 BHK</option>
-                            <option value="5">5 BHK</option>
-                        </select>
-                    </div>
-                </div>
+        <div class="loader-text">
+            AI IS ANALYZING PROPERTY
+        </div>
 
-                <div class="form-group">
-                    <label>Area's Resident Population</label>
-                    <input type="number" name="J4" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="citySelect">City</label>
-                    <div class="custom-select-wrapper">
-                        <select id="citySelect" name="J5" required>
-                            <option value="" disabled selected>Select a city</option>
-                            <option>Agra</option>
-                            <option>Ahmedabad</option>
-                            <option>Aligarh</option>
-                            <option>Amritsar</option>
-                            <option>Bengaluru</option>
-                            <option>Bhopal</option>
-                            <option>Bhubaneswar</option>
-                            <option>Chhatrapati Sambhajinagar</option>
-                            <option>Chennai</option>
-                            <option>Coimbatore</option>
-                            <option>Delhi</option>
-                            <option>Durgapur</option>
-                            <option>Gorakhpur</option>
-                            <option>Gwalior</option>
-                            <option>Hyderabad</option>
-                            <option>Jaipur</option>
-                            <option>Jalandhar</option>
-                            <option>Jamshedpur</option>
-                            <option>Jhansi</option>
-                            <option>Jodhpur</option>
-                            <option>Kanpur</option>
-                            <option>Kalyan-Dombivli</option>
-                            <option>Kolkata</option>
-                            <option>Kota</option>
-                            <option>Lucknow</option>
-                            <option>Ludhiana</option>
-                            <option>Madurai</option>
-                            <option>Mangalore</option>
-                            <option>Meerut</option>
-                            <option>Mumbai</option>
-                            <option>Nashik</option>
-                            <option>Navi Mumbai</option>
-                            <option>Nagpur</option>
-                            <option>Patna</option>
-                            <option>Pune</option>
-                            <option>Raipur</option>
-                            <option>Rajkot</option>
-                            <option>Rourkela</option>
-                            <option>Srinagar</option>
-                            <option>Surat</option>
-                            <option>Thiruvananthapuram</option>
-                            <option>Tiruppur</option>
-                            <option>Vadodara</option>
-                            <option>Varanasi</option>
-                            <option>Vasai-Virar</option>
-                            <option>Vijayawada</option>
-                            <option>Visakhapatnam</option>
-                            <option>Udaipur</option>
-                            <option>Warangal</option>
-                        </select>
-                    </div>
-                </div>
-                <!-- Furnishing Status -->
-                <div class="form-group">
-                    <label for="furnishingStatus">Furnishing Status</label>
-                    <div class="custom-select-wrapper">
-                        <select id="furnishingStatus" name="J6" required>
-                            <option value="" disabled selected>Select furnishing status</option>
-                            <option>Unfurnished</option>
-                            <option>Semi-furnished</option>
-                            <option>Fully furnished</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div><input type="submit" value="Predict"></div>
-
-        </form>
-
-        <form action="/history/">
-            <button type="submit" class="history-button">Show recent Predictions</button>
-        </form>
-
-        {% if result2 %}
-        <h2>{{ result2 }}</h2>
-        {% endif %}
+        <div class="loader-subtext">
+            Evaluating budget, age, BHK, population, city and furnishing...
+        </div>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <p>Creator : JNKP_Krish — <a href="mailto:krish123@gmail.com">krish123@gmail.com</a></p>
-    </footer>
+    <main class="main">
+        <h1>Property Valuation AI</h1>
+
+        <form
+            id="prediction-form"
+            action="{% url 'result' %}"
+            method="post"
+        >
+            {% csrf_token %}
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="budget">
+                        Purchase Budget (₹)
+                    </label>
+
+                    <input
+                        id="budget"
+                        type="number"
+                        name="J1"
+                        min="1"
+                        step="1"
+                        required
+                        placeholder="Minimum amount based on BHK"
+                        value="{{ form_values.J1|default:'' }}"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="house-age">
+                        House Age (0–15 years)
+                    </label>
+
+                    <input
+                        id="house-age"
+                        type="number"
+                        name="J2"
+                        min="0"
+                        max="15"
+                        step="1"
+                        required
+                        value="{{ form_values.J2|default:'' }}"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="bhk">
+                        Number of Bedrooms (BHK)
+                    </label>
+
+                    <select id="bhk" name="J3" required>
+                        <option
+                            value=""
+                            disabled
+                            {% if not form_values.J3 %}selected{% endif %}
+                        >
+                            Select BHK
+                        </option>
+
+                        {% for bhk in bhk_values %}
+                            <option
+                                value="{{ bhk }}"
+                                {% if form_values.J3 == bhk %}selected{% endif %}
+                            >
+                                {{ bhk }} BHK
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="population">
+                        Area's Resident Population
+                    </label>
+
+                    <input
+                        id="population"
+                        type="number"
+                        name="J4"
+                        min="1"
+                        step="1"
+                        required
+                        value="{{ form_values.J4|default:'' }}"
+                    >
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="city">City</label>
+
+                    <select id="city" name="J5" required>
+                        <option
+                            value=""
+                            disabled
+                            {% if not form_values.J5 %}selected{% endif %}
+                        >
+                            Select a city
+                        </option>
+
+                        {% for city in cities %}
+                            <option
+                                value="{{ city }}"
+                                {% if form_values.J5 == city %}selected{% endif %}
+                            >
+                                {{ city }}
+                            </option>
+                        {% empty %}
+                            <option value="" disabled>
+                                No cities found in 108.csv
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="furnishing">
+                        Furnishing Status
+                    </label>
+
+                    <select
+                        id="furnishing"
+                        name="J6"
+                        required
+                    >
+                        <option
+                            value=""
+                            disabled
+                            {% if not form_values.J6 %}selected{% endif %}
+                        >
+                            Select furnishing status
+                        </option>
+
+                        {% for status in furnishing_statuses %}
+                            <option
+                                value="{{ status }}"
+                                {% if form_values.J6 == status %}selected{% endif %}
+                            >
+                                {{ status }}
+                            </option>
+                        {% empty %}
+                            <option value="" disabled>
+                                No furnishing values found in 108.csv
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <button
+                id="predict-button"
+                type="submit"
+                class="btn-predict"
+            >
+                PREDICT PRICE
+            </button>
+        </form>
+
+        <a
+            href="{% url 'prediction_history' %}"
+            class="btn-history"
+        >
+            Show Recent Predictions
+        </a>
+
+        {% if result2 %}
+            <div
+                class="result-box"
+                role="status"
+                aria-live="polite"
+            >
+                {{ result2 }}
+            </div>
+        {% endif %}
+    </main>
+
+    <script>
+        const predictionForm =
+            document.getElementById("prediction-form");
+
+        const loaderOverlay =
+            document.getElementById("loader-overlay");
+
+        const predictButton =
+            document.getElementById("predict-button");
+
+        predictionForm.addEventListener(
+            "submit",
+            function (event) {
+                event.preventDefault();
+
+                loaderOverlay.style.display = "flex";
+                loaderOverlay.setAttribute(
+                    "aria-hidden",
+                    "false"
+                );
+
+                predictButton.disabled = true;
+
+                window.setTimeout(function () {
+                    predictionForm.submit();
+                }, 900);
+            }
+        );
+
+        window.addEventListener(
+            "pageshow",
+            function () {
+                loaderOverlay.style.display = "none";
+                loaderOverlay.setAttribute(
+                    "aria-hidden",
+                    "true"
+                );
+
+                predictButton.disabled = false;
+            }
+        );
+    </script>
 </body>
-
 </html>
-
