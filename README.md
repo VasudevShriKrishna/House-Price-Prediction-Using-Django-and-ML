@@ -138,105 +138,66 @@ The best next step for this project is likely to replace Linear Regression with 
 
 ---
 
-# 🚀 Installation & Setup
+## 9. Installation & Setup
 
-Follow these steps to get the project running on your local machine.
-1. Clone the repository
-2. Create a virtual environment and activate it.
-3. Write Command : python manage.py runserver 
----
+### 1) Prerequisites
+Make sure you have Python 3.9+ installed on your machine.
 
-## Prerequisites
+### 2) Create and activate a virtual environment
 
-Make sure you have a `requirements.txt` file in your root directory containing:
-
-```
-Django>=4.0
-pandas
-numpy
-scikit-learn
-```
-
----
-
-## Setup Instructions
-
-### 1️⃣ Clone the repository
+On Windows:
 
 ```bash
-git clone https://github.com/yourusername/your-repo-name.git
-cd your-repo-name
+python -m venv .venv
+.venv\Scripts\activate
 ```
 
----
-
-### 2️⃣ Create and activate a virtual environment
+On macOS/Linux:
 
 ```bash
-python -m venv venv
+python3 -m venv .venv
+source .venv/bin/activate
 ```
 
-**On Windows**
+### 3) Install the required libraries
 
-```bash
-venv\Scripts\activate
-```
-
-**On Mac/Linux**
-
-```bash
-source venv/bin/activate
-```
-
----
-
-### 3️⃣ Install Dependencies
+Install the dependencies from the project requirements file:
 
 ```bash
 pip install -r requirements.txt
 ```
 
----
+The project uses the following libraries:
+- Django
+- pandas
+- numpy
+- scikit-learn
 
-### 4️⃣ Configure Django Settings
+### 4) Verify the environment
 
-- Open your `settings.py` file.
-- Make sure you use your own unique Django **SECRET_KEY**.
-
----
-
-### 5️⃣ Train the Machine Learning Model
-
-Before starting the server, you must generate the model files.
+Check that the required packages are available:
 
 ```bash
-python train_model.py
+python -c "import django, pandas, numpy, sklearn; print('Environment ready')"
 ```
 
----
+If this command runs successfully, your environment is ready.
 
-### 6️⃣ Verify Model Generation
+### 5) Apply database migrations
 
-Check your project directory to see if **two `.pkl` files** have been generated.
+```bash
+python manage.py migrate
+```
 
-- ✅ **IF YES:** Proceed to Step 7.  
-- ❌ **IF NO:** Check that all imports are perfectly installed, then re-run the Python file.
-
----
-
-### 7️⃣ Run the Development Server
+### 6) Run the development server
 
 ```bash
 python manage.py runserver
 ```
 
----
+Then open:
 
-### 8️⃣ Open the Application
-
-Visit in your browser:
-
-```
+```text
 http://127.0.0.1:8000/
 ```
 
