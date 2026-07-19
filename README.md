@@ -242,13 +242,6 @@ http://127.0.0.1:8000/
 
 ---
 
-# 📊 Machine Learning Model
-
-The project uses a **Scikit-learn regression model** trained on housing data.  
-The trained model is saved as `.pkl` files and loaded by the Django backend for real-time predictions.
-
----
-
 # 📜 License
 
 This project is licensed under the **MIT License**.
